@@ -37,6 +37,10 @@ public class Controller {
     public  List<User> searchMultipleUserById(@RequestBody Multiple multiple){
         return mapper.searchMultipleUserById(multiple);
     }
+    @GetMapping("/user/searchAcc/{account}")
+    public  List<User> searchUserByAccount(@PathVariable String account){
+        return mapper.searchUserByAccount(account);
+    }
 //    @PostMapping("/testS")
 //    public int multiUser(@RequestBody List<Integer> ids){
 //        System.out.println("ids=>"+ids);

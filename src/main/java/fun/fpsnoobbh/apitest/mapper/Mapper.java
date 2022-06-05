@@ -33,6 +33,8 @@ public interface Mapper {
     List<User> searchMultipleUserById(Multiple multiple);
 
 //    int multiUser(List<Integer> ids);
+    @Select("select * from user where account=#{account}")
+    List<User> searchUserByAccount(@Param("account") String account);
 
 //  新增
     @Insert("insert into user(account,password,nickname,permission) values(#{account},#{password},#{nickname},#{permission});")
