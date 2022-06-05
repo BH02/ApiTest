@@ -47,4 +47,27 @@
             id=#{id}
         </where>
     </update>
+    <update id="updatePic">
+    update  piclist
+    <set>
+        <if test="id != null">
+            id=#{id},
+        </if>
+        <if test="src != null">
+            src=#{src},
+        </if>
+        <if test="content != null">
+            content=#{content},
+        </if>
+    </set>
+    <where>
+        id=#{id}
+    </where>
+    </update>
+    <select id="multiUser" parameterType="Integer">
+        select * from user where id in
+        <foreach item="ids" collection="list" index="index" open="(" separator="," close=")">
+            #{ids}
+        </foreach>
+    </select>
 </mapper>

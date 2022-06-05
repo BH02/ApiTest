@@ -1,6 +1,7 @@
 package fun.fpsnoobbh.apitest.controller;
 
 import fun.fpsnoobbh.apitest.entity.Article;
+import fun.fpsnoobbh.apitest.entity.Multiple;
 import fun.fpsnoobbh.apitest.entity.PicList;
 import fun.fpsnoobbh.apitest.entity.User;
 import fun.fpsnoobbh.apitest.mapper.Mapper;
@@ -8,6 +9,7 @@ import fun.fpsnoobbh.apitest.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Array;
 import java.util.List;
 
 @RestController
@@ -31,11 +33,19 @@ public class Controller {
     public  List<User> searchUserById(@PathVariable Integer id){
         return mapper.searchUserById(id);
     }
+    @PostMapping("/user/Multiple")
+    public  List<User> searchMultipleUserById(@RequestBody Multiple multiple){
+        return mapper.searchMultipleUserById(multiple);
+    }
+//    @PostMapping("/testS")
+//    public int multiUser(@RequestBody List<Integer> ids){
+//        System.out.println("ids=>"+ids);
+//        return  service.multiUser(ids);
+//    }
 
     //    新增或修改 取决于有无id
     @PostMapping("/user/add")
     public Integer saveUser(@RequestBody User user){
-
         return service.saveUser(user);
     }
 
@@ -59,6 +69,13 @@ public class Controller {
         List<PicList> all= mapper.findAllPic();
         return all;
     }
+
+    //    新增或修改 取决于有无id
+    @PostMapping("/pic/add")
+    public Integer savePic(@RequestBody PicList picList){
+        return service.savePic(picList);
+    }
+
     //    id查找
     @GetMapping("/pic/search/{id}")
     public  List<PicList> searchPicById(@PathVariable Integer id){
