@@ -28,11 +28,11 @@ public interface Mapper {
     @Select("select * from article where id=#{id}")
     List<Article> searchArtById(@Param("id") Integer id);
 
-//  查找多个
+//    查找多个
     @Select("select * from user where id in #{multipleId}")
     List<User> searchMultipleUserById(Multiple multiple);
 
-//    int multiUser(List<Integer> ids);
+//    帐号查找
     @Select("select * from user where account=#{account}")
     List<User> searchUserByAccount(@Param("account") String account);
 
