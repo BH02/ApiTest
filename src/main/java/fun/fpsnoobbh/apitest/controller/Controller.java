@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -106,6 +108,29 @@ public class Controller {
         List<Article> all= mapper.findAllArt();
         return all;
     }
+
+    //    最新文章
+    @GetMapping("/art/news")
+    public List<Integer> newArt(){
+
+        List<Article> all= mapper.findAllArt();
+        List<Integer> list = new ArrayList<>();
+
+        for (Article article : all) {
+            list.add(article.getId());
+        }
+    //     降序排列
+        Collections.sort(list);
+        Collections.reverse(list);
+    //     长度为5
+        List<Integer> shortList = new ArrayList<>();
+        for (int i=0;i<=4;i++){
+            shortList.add(list.get(i));
+        }
+
+        return shortList;
+    }
+
     //    id查找
     @GetMapping("/art/search/{id}")
     public  List<Article> searchArtById(@PathVariable Integer id){
